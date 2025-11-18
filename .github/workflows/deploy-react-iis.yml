@@ -1,0 +1,45 @@
+name: Build and Deploy React to IIS
+
+on:
+  push:
+    branches:
+      - main       # Update if your deployment branch is different
+  workflow_dispatch:
+
+jobs:
+  build-and-deploy:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build React App (Production)
+        run: npm run build
+
+      - name: List build folder (debug)
+        run: dir build
+
+      - name: Deploy to IIS using MSDeploy
+        shell: powershell
+        run: |
+          $msdeploy = "C:\Program Files\IIS\Microsoft Web Deploy V3\msdeploy.exe"
+          $sourcePath = "${{ github.workspace }}\build"
+          $dest = "auto,computerName='${{ secrets.MSDEPLOY_URL }}?site=${{ secrets.IIS_SITE_NAME }}',username='${{ secrets.MSDEPLOY_USERNAME }}',password='${{ secrets.MSDEPLOY_PASSWORD }}',AuthType='Basic'"
+
+          & $msdeploy -verb:sync `
+            -source:contentPath="$sourcePath" `
+            -dest:$dest `
+            -allowUntrusted `
+            -enableRule:DoNotDeleteRule `
+            -retryAttempts:5 `
+            -verbose
+

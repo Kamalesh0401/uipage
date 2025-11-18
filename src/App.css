@@ -1,0 +1,104 @@
+.App {
+  text-align: center;
+  height: 100%;
+  width: 100%;
+}
+
+#friendList {
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  border: 2px solid black;
+  height: 100vh;
+}
+
+#messageWindow {
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  border: 2px solid black;
+}
+
+.cursor-click {
+  cursor: pointer;
+}
+
+.cursor-click:hover {
+  background-color: antiquewhite;
+}
+
+.me {
+  background-color: #188038;
+  border-radius: 10px;
+  min-width: 10%;
+  max-width: 50%;
+  width: auto;
+  white-space: wrap;
+  overflow-wrap: break-word;
+  text-wrap: wrap;
+}
+
+.you {
+  background-color: #6e7674;
+  border-radius: 10px;
+  width: auto;
+  min-width: 10%;
+  max-width: 50%;
+  white-space: wrap;
+  overflow-wrap: break-word;
+  text-wrap: wrap;
+}
+
+.messagecls {
+  white-space: wrap;
+  overflow-wrap: break-word;
+  text-wrap: wrap;
+  text-align: start;
+  color: white;
+}
+
+.send {
+  top: 50%;
+  transform: translateY(-50%);
+  right: 0;
+  margin-right: 20px;
+}
+
+.modal {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+  background-color: white;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+  max-width: 500px;
+  border-radius: 10px;
+}
+
+.close-button {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close-button:hover,
+.close-button:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.messageHead {
+  text-align: start;
+  padding: 5px;
+}
